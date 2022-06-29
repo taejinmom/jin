@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+<insert id="add" parameterType="mvo">
+	insert into member 
+	values(member_seq.nextVal,#{id},#{pwd},#{name},#{age},
+	#{gender},sysdate)
+</insert>
+<select id="idchk" parameterType="String" resultType="int">
+	select count(*) from member where id=#{id}
+</select>
+
+<select id="list" resultType="mvo">
+	select * from member order by 1 desc
+</select>
+<select id="listpage" resultType="mvo" parameterType="map">
+	 select * from (
+    select rownum r_num, a.* from (
+     select * from member order by mnum desc
+    ) a
+ ) where r_num BETWEEN #{begin} and #{end}
+</select>
+ <select id="totalCount" resultType="int">
+ 	select count(*) from member
+ </select>
+
+<select id="mypage" resultType="mvo" parameterType="String">
+	select * from member where id=#{id}
+</select>
+
+
+<delete id="del" parameterType="String">
+	delete from member where id=#{id}
+</delete>
+
+<!-- login mapper -->
+<select id="login" parameterType="mvo" resultType="int">
+	select count(*) from member where id=#{id} and pwd=#{pwd}
+</select>
+</mapper>
+
+
+
+
+
+
+ 
+
