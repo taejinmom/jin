@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="set" class="ex5_property.Ex3_Set">
+<property name="addrList">
+<set>
+<value>서울시 강남구 역삼동</value>
+<value>서울시 금천구 가산동</value>
+<value>서울시 강남구 인헌동</value>
+</set>
+</property>
+</bean>
+<bean id="prop" class="ex5_property.Ex_Properties">
+<property name="prop">
+<props>
+<prop key="addr">서울시 강남구 역삼동</prop>
+<prop key="email">jinah</prop>
+<prop key="hello">안녕하세요</prop>
+</props>
+</property>
+</bean>
+</beans>

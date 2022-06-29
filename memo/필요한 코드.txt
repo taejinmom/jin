@@ -1,0 +1,28 @@
+----------<bootstrap>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap	.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+--------jquery
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+--------jstl
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+-------?
+<%@ page trimDirectiveWhitespaces="true"%>
+
+--------css 적용
+  <link rel="stylesheet" href="../resources/css/style.css"(경로)/>
+
+--------spring
+</build>
+<dependencies>
+      <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+         <version>4.3.26.RELEASE</version>
+      </dependency>
+   </dependencies>
+

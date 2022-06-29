@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 일반 bean에 scope="prototype"를 주면 lazy-init="true" 처럼
+getBean()할 때 객체가 명시적으로 생성이 된다** -->
+<bean id="today" class="ex1.LocalToday" p:loc="가산" p:name="김길동" ></bean>
+
+<bean id="lazy" class="ex1.LazyBean" lazy-init="true" p:msg="안녕하세요" scope="prototype"></bean>
+
+
+</beans>

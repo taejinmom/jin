@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.12.202003180620-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/ex1/today.xml</config>
+		<config>src/ex2/ex2.xml</config>
+		<config>src/ex3_life/life.xml</config>
+		<config>src/exam1/profile.xml</config>
+		<config>src/ex4_const/ex4_const.xml</config>
+		<config>src/ex5_property/list.xml</config>
+		<config>src/ex5_property/map.xml</config>
+		<config>src/ex5_property/map_child.xml</config>
+		<config>src/exam2/listmap.xml</config>
+		<config>src/ex5_property/set.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
