@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<!-- 자동 빈묶기관련 @Autowired , @Resource 등 어노테이션을 가진 빈안에서 어노테이션이 인식되도록 설정하는 속성 -->
+<context:annotation-config  />
+<bean id="msg1" class="java.lang.String"><qualifier value="kosmo112"></qualifier>
+<constructor-arg value="오늘은 목요일"></constructor-arg> </bean>
+<bean id="msg666" class="java.lang.String"><qualifier value="kosmo113"></qualifier> <constructor-arg value="오늘은 비가내립니다. ㅎㅎㅎ"></constructor-arg> </bean>
+<bean id="auto1" class="ex1.Ex1_AutoWired" ></bean>
+
+</beans>
