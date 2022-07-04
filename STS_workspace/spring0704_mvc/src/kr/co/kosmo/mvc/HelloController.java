@@ -1,5 +1,7 @@
 package kr.co.kosmo.mvc;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,10 +17,13 @@ public class HelloController {
 	@RequestMapping(value="/hello") 
 	public ModelAndView myHello() {
 		ModelAndView mav = new ModelAndView();
+		ArrayList<String> profile = new ArrayList<String>();
 		//request.setAttribute("key",val);
 		mav.addObject("msg", "<h1>안녕하세요 나의 첫번째 spring MVC 입니다 <h1>");
 		mav.setViewName("hello");
 		return mav;
 	}
+	
+	
 	
 }

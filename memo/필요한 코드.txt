@@ -40,3 +40,6 @@
 		</dependency>
    </dependencies>
 
+create user scott identified by 123 default tablespace users
+
+
