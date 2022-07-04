@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<context:annotation-config />
+	<!-- Advice -->
+	<bean id="checkAdvice" class="ex1.CheckAdvice" />
+	<bean id="namereturnAdvice" class="ex1.NameReturnAdvice"></bean>
+	<bean id="afterthrowAdvice" class="ex1.AfterThrowAdvice"></bean>
+	<bean id="before" class="ex1.BeforeAdvice">	</bean>
+	<bean id="pub" class="ex1.MyPublic"  ></bean>
+	
+	<!-- Aop => ProxyFactoryBean -->
+	<aop:config>
+	
+		<aop:aspect id="time" ref="checkAdvice">
+			<aop:pointcut expression="execution(* ex1.*.first(..))" id="firstP" />
+			<aop:around method="checkTime" pointcut-ref="firstP" />
+		</aop:aspect>
+		
+		<aop:aspect id="afterAdvice" ref="namereturnAdvice">
+		<aop:pointcut expression="execution(* ex1.DaoImple.second())" id="secondP"/>
+		<aop:after-returning method="myReturnMethod" pointcut-ref="secondP" returning="ret"/>
+		</aop:aspect>
+
+		<aop:aspect id="afterthrowAdvice" ref="afterthrowAdvice">
+	<aop:pointcut expression="execution(* ex1.DaoImple.third(..))" id="thirdP"/>
+	<aop:after-throwing method="commthrow" pointcut-ref="thirdP" throwing="ew"/>
+		</aop:aspect>
+		
+		<aop:aspect id="before" ref="before">
+		<aop:pointcut expression="execution(* ex1.DaoImple.todayMethod(..))" id="bfp"/>
+		<aop:before method="bf" pointcut-ref="bfp" />
+		</aop:aspect>
+		
+	</aop:config>
+	<!-- Target -->
+	<bean id="dao" class="ex1.DaoImple"/>
+	<bean id="model" class="ex1.MyModel"/>
+	<bean id="model1" class="ex1.MyModel"/>
+</beans>
