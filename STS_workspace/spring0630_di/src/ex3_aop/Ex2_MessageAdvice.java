@@ -24,7 +24,7 @@ public class Ex2_MessageAdvice implements MethodInterceptor{
 			
 			
 			long end = System.currentTimeMillis();
-			long difTime = (start - end)/1000;
+			long difTime = (start - end)/10000;
 			System.out.println("걸린시간 : " + Math.abs(difTime));
 			return rev;
 	}

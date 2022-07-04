@@ -14,10 +14,7 @@ public class Ex1_MessageAdvice implements MethodInterceptor{
 			Object rev = invocation.proceed();
 			if(rev != null) {
 				System.out.println("REV : " + rev);
-				
 			}
-			
-			
 			
 			System.out.println("후행 공통 비지니스 로직이 수행 됨");
 			return rev;
