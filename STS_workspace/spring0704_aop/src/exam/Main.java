@@ -5,8 +5,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class Main {
 	public static void main(String[] args) {
-		ApplicationContext c = 
-				new GenericXmlApplicationContext("exam/exam.xml");
+		ApplicationContext c = new GenericXmlApplicationContext("exam/exam.xml");
 	
 	       
 	      

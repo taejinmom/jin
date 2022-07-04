@@ -2,14 +2,12 @@ package advice;
 
 import java.util.Scanner;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Before;
 
 public class SecurityAdvice {
 	int count;
 	
-	@Before("execution(* exam.LoginTest.*(..))")
+	@Before("execution(* exam.LoginTest.securityMethod(..))")
 	public void beforeMethod() {
 		Scanner sc = new Scanner(System.in);
 		t: while (true) {
