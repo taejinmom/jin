@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+<insert id="add" parameterType="bvo">
+	insert into board3
+	values(board3_seq.nextVal,#{title},#{writer},#{content},#{reip},sysdate)
+</insert>
+
+<select id="list" resultType="bvo">
+	select * from board3 order by 1 desc
+</select>
+
+<select id="detail" parameterType="int" resultType="bvo">
+	select * from board3 where num = #{num}
+</select>
+</mapper>
+
+
+
+
+
+
+
+ 
+
