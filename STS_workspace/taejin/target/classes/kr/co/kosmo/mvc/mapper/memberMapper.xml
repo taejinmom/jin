@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="member">
+ 	<insert id="add" parameterType="mvo">
+ 		insert into member2 values(member2_seq.nextVal, #{id}, #{pwd}, #{name}, #{age}, #{gender}, sysdate)
+ 	</insert>
+ 	
+ 	<select id="idchk" parameterType="String" resultType="int">
+ 		select count(*) from member2 where id=#{id}
+ 	</select>
+ 	
+ 	<select id="list" resultType="mvo">
+ 		select * from member2 order by 1 desc
+ 	</select>
+
+ 	<select id="listpage" resultType="mvo" parameterType="map">
+ 		select * from (select rownum r_num, a.* from(select * from member2 order by r_num))
+ 	</select>
+
+	<select id="totalCount" resultType="list">
+ 		select count(*) from member2
+ 	</select>
+
+ 	<select id="mypage" resultType="mvo" parameterType="String">
+ 		select * from member2 where id=#{id}
+ 	</select>
+ 	<select id="mypageboardlist" resultType="mvo" parameterType="String">
+ 		select  from member2
+ 	</select>
+ 	<delete id="del" parameterType="String">
+ 		delete from member2 where id=#{id}
+ 	</delete>
+ 	
+ 	<select id="login" parameterType="mvo" resultType="mvo">
+ 		select * from member2 where id=#{id} and pwd=#{pwd}
+ 	</select>
+ 	
+
+ </mapper>

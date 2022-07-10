@@ -1,6 +1,6 @@
 package kr.co.kosmo.mvc.vo;
 
-public class MemerDTO extends SuperDTO{
+public class MemberDTO extends SuperDTO{
 	private int mnum;
 	private String id;
 	private String pwd;

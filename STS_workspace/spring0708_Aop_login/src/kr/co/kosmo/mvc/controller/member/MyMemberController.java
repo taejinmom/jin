@@ -10,61 +10,72 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.kosmo.mvc.dao.MemberDaoInter;
-import kr.co.kosmo.mvc.vo.MemerDTO;
-// http://localhost/spring0706_mybatis/member/memberForm   => /WEB-INF/views/mymember/memberForm.jsp
+import kr.co.kosmo.mvc.vo.MemberDTO;
+
+//http://localhost/spring0706_mybatis/member/memberForm => /WEB-INF/views/mymember/memberForm.jsp
 @Controller
 @RequestMapping("/member")
 public class MyMemberController {
-		@Autowired
-		private MemberDaoInter memberDaoInter;
 	
-		@GetMapping(value="/memberForm")
-		public ModelAndView memberForm() {
-			ModelAndView mav = new ModelAndView("mymember/memberForm");
-			return mav;
-		}
+	@Autowired
+	private MemberDaoInter memberDaoInter;
+	
+	@GetMapping(value = "/memberForm")
+	public ModelAndView memberForm() {
+		ModelAndView mav = new ModelAndView("mymember/memberForm");
+		return mav;
+	}
+	
+	@PostMapping(value = "/memberIn")
+	public String memberIn(MemberDTO dto) {
+		System.out.println("ID : "+dto.getId());
+		memberDaoInter.addMember(dto);
+		return "redirect:/main";
+	}
+	
+	@GetMapping(value = "/idcheck")
+	public String idCheck(Model m, @RequestParam("id") String id) {
+//		System.out.println("idAjax:"+id);
+		int cnt = memberDaoInter.idcheck(id);
+//		System.out.println("cnt : "+cnt);
+//		String msg ="이미 사용중인 아이디 입니다."; 
+//		if(cnt == 0) {
+//			 msg ="사용 가능한 아이디 입니다.";
+//		}
+		m.addAttribute("msg", cnt);
+		return "mymember/idchk";
+	}
+
+//	@GetMapping(value = "/loginForm")
+//	public ModelAndView loginForm() {
+//		ModelAndView mav = new ModelAndView("login/loginForm");
+//		return mav;
+//	}
+	
+	@RequestMapping("/memberList")
+	public String memberList(Model m, String cPage) {
 		
-		@PostMapping(value="/memberIn")
-		public String memberIn(MemerDTO dto) {
-			System.out.println("ID : "+dto.getId());
-			memberDaoInter.addMember(dto);
-			return "redirect:/main";
-			
-		}
-		// 온라인 - 스터디 / 20분 ..
-		//요청이 member/idcheck?id=xman 일 때 아이디 중복 체크를 해주는 모델을 만들고
-		// mymember/idchk.jsp로 msg값을 전송해서 출력하시오.
-		// msg => 사용여부 출력 
-		// 반드시 id란 파라미터가 있어야 한다.(체크 대상) 
-		@GetMapping(value="/idcheck")
-		public String idCheck(Model m,@RequestParam("id") String id) {
-			System.out.println("idAjax:"+id);
-			int cnt = memberDaoInter.idcheck(id);
-			System.out.println("Cnt:"+cnt);
-			//String msg ="이미 사용중인 아이디 입니다.";
-			//if(cnt == 0) {
-			//	 msg ="사용 가능한 아이디 입니다.";
-			//}
-			m.addAttribute("msg", cnt);
-			return "mymember/idchk";
-		}
-		 @RequestMapping(value = "/memberList")
-		    public String memberList(Model m ,String cPage) {
-		    	int totalRecord = memberDaoInter.getCnt();
-		    	m.addAttribute("totalRecord", totalRecord);
-		    	
-		    	return "mymember/memberList";
-		    }
-		
+		int totalRecord = memberDaoInter.getCnt();
+		m.addAttribute("totalRecord", totalRecord);
+		return "mymember/memberList";
+	}
+	
+//	@PostMapping(value = "/login")
+//	public String login(MemberDTO dto) {
+//		int num = memberDaoInter.login(dto);
+//		if(num != 0) {
+//			System.out.println("로그인 실패!");			
+//		}else {
+//			System.out.println("로그인 성공!");
+//			return "forward:/main";
+//		}
+//		return "redirect:/main";
+//	}
+	
+//	public ModelAndView memberIdCheck(String id) {
+//		ModelAndView mav = new ModelAndView();
+//		int cnt = memberDaoInter.idcheck(id);
+//		
+//		return mav;
+//	}
 }
-
-
-
-
-
-
-
-
-
-
-

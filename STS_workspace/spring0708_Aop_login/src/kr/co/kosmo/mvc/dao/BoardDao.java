@@ -9,30 +9,32 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.kosmo.mvc.vo.BoardVO;
 import kr.co.kosmo.mvc.vo.SuperDTO;
-@Repository
+
+@Repository("boardList")
 public class BoardDao implements BoardDaoInter{
+
 	@Autowired
 	private SqlSessionTemplate ss;
 	
 	@Override
-	public void boardInsert(BoardVO vo) {
-		ss.insert("board.add",vo);
+	public void addBoard(BoardVO vo) {
+		ss.insert("board.add", vo);
 	}
 
 	@Override
-	public String Detail(int num) {
-		
-		return ss.selectOne("board.detail",num);
+	public BoardVO getDetail(int num) {
+		return ss.selectOne("board.detail", num);
 	}
-	
+
 	@Override
 	public List<? extends SuperDTO> getList(Map<String, Integer> map) {
-		List<? extends SuperDTO> list = ss.selectList("member.listpage",map);
-		return list;
+		return ss.selectList("board.listpage", map);
 	}
-	
 
-	
-	
+	@Override
+	public int getCnt() {
+		int cnt = ss.selectOne("board.totalCount");
+		return cnt;
+	}
 
 }

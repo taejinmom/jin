@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
@@ -107,8 +109,15 @@ select.btn-mini {
 	font-size: 11px;
 }
 </style>
-
-
+<script>
+	$(function() {
+		$('#searchv').focusin(function() {
+			$(this).val("검색어 입력")
+		});
+		$('#searchv').focusout(function() {
+			$(this).val("")
+		});
+</script>
 </head>
 <body>
 	<header class="text-white text-center">
@@ -116,12 +125,30 @@ select.btn-mini {
 			<div class="p-2 bg-info">
 				<a href="#" class="nav-link text-white" id="item1">Flex item 1</a>
 			</div>
-			<div class="p-2 bg-warning">
-				<a href="${pageContext.request.contextPath}/login/loginForm" class="nav-link text-white" id="item2">로그인</a>
-			</div>
-			<div class="p-2 bg-primary">
-				<a href="${pageContext.request.contextPath}/member/memberForm" class="nav-link text-white" id="item3">회원가입</a>
-			</div>
+
+
+			<c:choose>
+				<c:when test="${sessionScope.sessionID == null}">
+					<div class="p-2 bg-warning">
+						<a href="${pageContext.request.contextPath}/login/loginForm"
+							class="nav-link text-white" id="item2">Login</a>
+					</div>
+					<div class="p-2 bg-primary">
+						<a href="${pageContext.request.contextPath}/member/memberForm"
+							class="nav-link text-white" id="item3">회원가입</a>
+					</div>
+				</c:when>
+				<c:when test="${sessionScope.sessionID != null}">
+					<div class="p-2 bg-warning">
+						<a href="${pageContext.request.contextPath}/login/logout"
+							class="nav-link text-white" id="item2">Logout</a>
+					</div>
+					<div class="p-2 bg-primary">
+						<a href="${pageContext.request.contextPath}/member/memberForm"
+							class="nav-link text-white" id="item3">MyPage</a>
+					</div>
+				</c:when>
+			</c:choose>
 		</div>
 		<!-- Carousel -->
 		<div id="demo" class="carousel slide" data-bs-ride="carousel">
@@ -136,24 +163,27 @@ select.btn-mini {
 			<!-- The slideshow/carousel -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="${pageContext.request.contextPath}/resources/image/d1.jpg" alt="Kosmo113" class="d-block"
-						style="width: 100%">
+					<img
+						src="${pageContext.request.contextPath}/resources/image/d1.jpg"
+						alt="Kosmo113" class="d-block" style="width: 100%">
 					<div class="carousel-caption">
 						<h3>UI 요구사항 확인하기,UI 설계하기</h3>
 						<p>jQuery 를 이용하여 제공받은 샘플파일에서 아래 요구사항대로 구현합니다.</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/image/d2.jpg" alt="Carousel" class="d-block"
-						style="width: 100%">
+					<img
+						src="${pageContext.request.contextPath}/resources/image/d2.jpg"
+						alt="Carousel" class="d-block" style="width: 100%">
 					<div class="carousel-caption">
 						<h3>Carousel 기능을 CSS3로!</h3>
-						<p>Thank you, CSS3!</p>
+						<p><c:if test="${sessionScope.sessionName != null}">${sessionScope.sessionName} 님 안녕하세요!</c:if>Thank you, CSS3!</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/image/d3.jpg" alt="JSP" class="d-block"
-						style="width: 100%">
+					<img
+						src="${pageContext.request.contextPath}/resources/image/d3.jpg"
+						alt="JSP" class="d-block" style="width: 100%">
 					<div class="carousel-caption">
 						<h3>UI 요구사항 확인하기,UI 설계하기</h3>
 						<p>jQuery 를 이용하여 제공받은 샘플파일에서 아래 요구사항대로 구현합니다.</p>
@@ -176,9 +206,15 @@ select.btn-mini {
 	<nav class="navbar navbar-expand-sm mybgColor">
 		<div class="container-fluid">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="${pageContext.request.contextPath}/main" class="nav-link active">Home</a></li>
-				<li class="nav-item"><a href="${pageContext.request.contextPath}/board/boardList" class="nav-link">Board</a></li>
-				<li class="nav-item"><a href="${pageContext.request.contextPath}/upload/uplist" class="nav-link">upDemo</a></li>
+				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/main"
+					class="nav-link active">Home</a></li>
+				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/board/boardList"
+					class="nav-link">Board</a></li>
+				<li class="nav-item"><a
+					href="${pageContext.request.contextPath}/upload/uplist"
+					class="nav-link">upDemo</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
 				<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
 			</ul>
