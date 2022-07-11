@@ -12,6 +12,7 @@
 		<li class="border-top my-3"></li>
 	</ul>
 	<div>
+		<%-- 리팩토링 해야함 --%>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -107,6 +108,7 @@
 				</tr>
 			</tfoot>
 		</table>
+		<%-- 리팩토링!! --%>
 	</div>
 
 </article>

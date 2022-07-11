@@ -2,28 +2,28 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board">
-
-<insert id="add" parameterType="bvo">
-	insert into board3
-	values(board3_seq.nextVal,#{title},#{writer},#{content},#{reip},sysdate)
-</insert>
-
-<select id="list" resultType="bvo">
-	select * from board3 order by 1 desc
-</select>
-
-<select id="detail" parameterType="int" resultType="bvo">
-	select * from board3 where num = #{num}
-</select>
-<!-- 리스트페이지 하나 만들어야함 -->
-</mapper>
-
-
-
-
-
-
-
- 
-
+ <mapper namespace="board">
+ 	<insert id="add" parameterType="bvo">
+ 		insert into board3 values(board3_seq.nextVal, #{title}, #{writer}, #{content}, #{reip}, sysdate)
+ 	</insert>
+ 	
+ 	<select id="list" resultType="bvo">
+ 		select * from board3 order by 1 desc
+ 	</select>
+ 	
+ 	<select id="detail" resultType="bvo" parameterType="int">
+ 		select * from board3 where num = #{num}
+ 	</select>
+ 	<select id="totalCount" resultType="int">
+ 		select count(*) from board3
+ 	</select>
+ 	<select id="listpage" resultType="bvo" parameterType="map">
+		select * from (
+		select rownum
+		r_num, a.* from(
+		select * from board3 order by num desc
+		) a
+		)where r_num
+		between #{begin} and #{end}
+	</select>
+ </mapper>

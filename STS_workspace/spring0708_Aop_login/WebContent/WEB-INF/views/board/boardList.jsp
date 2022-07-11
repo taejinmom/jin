@@ -26,7 +26,7 @@
 				<%-- for start --%>
 				<c:forEach var="e" items="${list }">
 					<tr>
-						<td>${e.num }</td>
+						<td>${e.r_num }</td>
 						<td><a href="boardDetail?num=${e.num}">${e.title}</a></td>
 						<td>${e.writer }</td>
 						<td>1000</td>
@@ -47,7 +47,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="uplist?cPage=${startPage-1}">이전으로</a></li>
+											href="boardList?cPage=${startPage-1}">이전으로</a></li>
 									</c:otherwise>
 								</c:choose>
 								<!--        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li> -->
@@ -59,7 +59,7 @@
 										</c:when>
 										<c:otherwise>
 											<li class="page-item"><a class="page-link"
-												href="uplist?cPage=${i.index}">${i.index}</a></li>
+												href="boardList?cPage=${i.index}">${i.index}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>

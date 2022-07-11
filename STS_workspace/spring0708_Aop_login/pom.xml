@@ -24,29 +24,28 @@
       </plugin>
     </plugins>
   </build>
-   <dependencies> 
-  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+   <dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context</artifactId>
-		    <version>4.3.26.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.26.RELEASE</version>
 		</dependency>
-		<!--  JSTL -->
-  		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-jstlel -->
+		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-jstlel -->
+		<!-- jstl -->
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
 			<artifactId>taglibs-standard-jstlel</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-compat -->
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
 			<artifactId>taglibs-standard-compat</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-		<!--  AOP -->
-				<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<!-- AOP -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -58,46 +57,42 @@
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
-	<!--  webmvc -->	
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-webmvc</artifactId>
-	    <version>4.3.26.RELEASE</version>
-	</dependency>
-	<!--  Fileupload -->	
-	<dependency>
-		<groupId>commons-io</groupId>
-		<artifactId>commons-io</artifactId>
-		<version>2.6</version>
-	</dependency>
-<!--  MyBatis 설정 -->	
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-jdbc</artifactId>
-		<version>4.3.26.RELEASE</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-	<dependency>
-	    <groupId>org.mybatis</groupId>
-	    <artifactId>mybatis</artifactId>
-	    <version>3.5.6</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-	<dependency>
-	    <groupId>org.mybatis</groupId>
-	    <artifactId>mybatis-spring</artifactId>
-	    <version>2.0.6</version>
-	</dependency>		
-	
-	<dependency>
+		<!-- web mvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.3.26.RELEASE</version>
+		</dependency>
+		<!-- File UpLoad -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<!-- MyBatis 설정 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.3.26.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
-	
-		
-  </dependencies> 
-  
+	</dependencies>
 </project>
