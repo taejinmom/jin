@@ -7,6 +7,8 @@
 		<typeAlias type="kr.co.kosmo.mvc.vo.MemberDTO" alias="mvo"/>
 		<typeAlias type="kr.co.kosmo.mvc.vo.BoardVO" alias="bvo"/>
 		<typeAlias type="kr.co.kosmo.mvc.vo.UpBoardDTO" alias="uvo"/>
+			<typeAlias type="kr.co.kosmo.mvc.vo.SurveyVO" alias="survo"/>
+ 		<typeAlias type="kr.co.kosmo.mvc.vo.SurveyContentVO" alias="subvo"/>
 	</typeAliases>
 <!-- spring에 위임한다.
 	<environments default="">
