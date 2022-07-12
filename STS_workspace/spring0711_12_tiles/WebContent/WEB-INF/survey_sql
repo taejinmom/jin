@@ -18,3 +18,59 @@ surveycnt number,
 constraint surveycontent_subcode_fk foreign key(subcode)
 references survey(num) 
 );
+
+create table survey(
+num number primary key,
+sub varchar2(100),
+code number,
+sdate date);
+
+create sequence survey_seq increment by 1 start with 1;
+
+create table surveycontent(
+subtype char(5),
+subcode number,
+surveytitle varchar2(100),
+surveycnt number,
+constraint surveycontent_subcode_fk foreign key(subcode)
+references survey(num)on delete cascade);
+--테스트
+--단위처리
+--설문에 대한
+insert into survey values(1,'오늘 비가 올까요?',3,sysdate);
+
+-- 항목
+insert all
+into surveycontent values('A',1,'온다',0)
+into surveycontent values('B',1,'안온다',0)
+into surveycontent values('C',1,'모르겠다',0)
+
+select * from dual;
+select * from survey;
+select * from surveycontent;
+rollback;
+
+select d.deptno,d.dname,d.loc,s.sabun,s.saname,s.sajob,s.sapay,s.sahire,s.gender,s.samgr 
+from sawon s,dept d where s.deptno = d.deptno
+and d.deptno =10;
+
+create table sawon_phone(
+pnum number constraint sawon_phone_pk primary key,
+pmodel varchar2(30),
+phnum varchar2(30),
+pdate date,
+constraint sawon_phone_pnum_fk foreign key(pnum) references sawon(sabun));
+
+
+Insert Into sawon_phone Values(1,'삼성Note8','010-3532-1217','2016/01/01');
+Insert Into sawon_phone Values(2,'엘지G5','010-1233-1227','2016/02/01');
+Insert Into sawon_phone Values(17,'엘지G5','010-1233-1227','2016/02/01');
+Insert Into sawon_phone Values(13,'엘지G5','010-1213-1227','2016/02/01');
+Insert Into sawon_phone Values(22,'엘지G5','010-1222-1227','2016/02/01');
+Insert Into sawon_phone Values(3,'구글넥서스','010-1233-5627','2016/02/01');
+Insert Into sawon_phone Values(5,'구글넥서스','010-8753-4327','2016/02/01');
+Insert Into sawon_phone Values(7,'구글넥서스','010-9898-3535','2016/02/01');
+Insert Into sawon_phone Values(11,'구글넥서스','010-6763-3535','2016/02/01');
+Insert Into sawon_phone Values(20,'구글넥서스','010-5412-1299','2016/02/01');
+Insert Into sawon_phone Values(6,'구글넥서스','010-9991-3422','2016/02/01');
+commit;

@@ -1,4 +1,4 @@
-package kr.co.kosmo.mvc.controller.login;
+package kr.co.kosmo.mvc.controller.sawon;
 
 import javax.servlet.http.HttpSession;
 
