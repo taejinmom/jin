@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jhy_item">
+
+	<select id="list" parameterType="String" resultType="ivo">
+
+		select *
+		from item where
+		i_gender = #{i_gender} or i_gender = '공용' and
+		i_category not in('잡화')
+		order by i_no
+
+	</select>
+	<!-- <select id="listpage" resultType="" parameterType=""> select * from 
+		( select rownum r_num, a.* from( select * from item where i_gender = #{i_gender} 
+		or i_gender = '공용' and i_category not in('잡화') order by i_no ) a )where r_num 
+		between #{begin} and #{end} </select> -->
+	<select id="category" resultType="ivo">
+		select * from item where
+		i_category = '잡화' order by i_no
+	</select>
+	
+	<resultMap type="ivo" id="itemResult">
+		<id property="i_no" column="i_no" javaType="int" />
+		<result property="i_price" column="i_price" javaType="int" />
+		<result property="i_name" column="i_name" />
+		<result property="i_category" column="i_category" />
+		<result property="i_comm" column="i_comm" />
+		<result property="i_img" column="i_img" />
+		<result property="i_gender" column="i_gender" />
+
+		<association property="stockvo" column="i_no" javaType="svo">
+			<id property="s_no" column="i_no" javaType="int" />
+			<result property="s_stock" column="s_stock" javaType="int" />
+			<result property="s_name" column="s_name" />
+		</association>
+	</resultMap>
+	
+	<select id="detail" parameterType="int"  resultMap="itemResult">
+		select
+		i.i_no,
+		i.i_name, i.i_price, i.i_category, i.i_comm, i.i_img, i.i_gender,
+		s.s_stock,s.s_name from item i, stock s
+		 where i.i_no = s.s_no and i.i_no = #{s_no}
+	</select>
+
+	<select id="totalCount" resultType="int">
+		select count(*) from item
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmr_review">
+<insert id="add" parameterType="rvo">
+	insert into reviews values(reviews_seq.nextVal, 
+	#{ord_no},#{mem_no},#{i_no},#{r_name},#{r_comm},#{r_score},sysdate)
+</insert>
+
+
+
+
+
+
+
+</mapper>
+
+

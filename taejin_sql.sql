@@ -13,8 +13,8 @@ bnum number,
 constraint board4_num_pk primary key(num),
 constraint board4_bnum_fk foreign key(bnum) references member2(num)
 );
-
-
+select * from board4;
+select * from member2;
 create SEQUENCE member2_seq INCREMENT by 1 start with 1;
 
 CREATE TABLE UPBOARD2
@@ -44,5 +44,10 @@ CREATE TABLE UPBOARD2
      );
      select * from member2 where id = 'member2' and pwd = '1111';
      select * from member2;
-     select rownum num, m.name,b.num,b.title from member2 m, board4 b where m.num = b.bnum;
      select * from board4;
+     commit;
+     select rownum num,b.title,b.bdate
+     from member2 m, board4 b where m.num = b.bnum;
+     select * from board4 b, member2 m where m.id='member1';
+     delete from member2 where id = 'MEMBER2';
+     select * from board4 b , member2 m where b.num = m.num and b.num= 4;
