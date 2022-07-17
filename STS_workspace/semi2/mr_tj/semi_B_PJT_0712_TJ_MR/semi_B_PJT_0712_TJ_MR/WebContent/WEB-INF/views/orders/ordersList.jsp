@@ -104,7 +104,7 @@
           <c:choose>
           <%-- 관리자 로그인 시 구매목록 컬럼 --%>
 	      <c:when test="${sessionScope.sessionId == 'admin' }">
-        	<td>${e.r_num }
+        	<td>${e.r_num }</td>
         	<td>${e.ord_no }</td>
 	        <td><a href="${mycontext }/review/reviewForm?num=${e.i_no }">${e.ord_name }</a></td>
 	        <td>${e.mvo.mem_name }</td>
@@ -126,6 +126,7 @@
 	      	 주문번호, 상품명, 수량, 총 금액, 주문상태
 	      --%>
 	      <c:otherwise>
+	      <td>${e.r_num }</td>
 	        <td>${e.ord_no }</td>
 	        <td>${e.ivo.i_name }</td>
 	        <td>${e.ord_count }</td>

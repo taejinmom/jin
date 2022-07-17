@@ -21,7 +21,7 @@
 		select * from item where
 		i_category = '잡화' order by i_no
 	</select>
-	
+	<!-- item detail -->
 	<resultMap type="ivo" id="itemResult">
 		<id property="i_no" column="i_no" javaType="int" />
 		<result property="i_price" column="i_price" javaType="int" />
@@ -40,8 +40,7 @@
 	
 	<select id="detail" parameterType="int"  resultMap="itemResult">
 		select
-		i.i_no,
-		i.i_name, i.i_price, i.i_category, i.i_comm, i.i_img, i.i_gender,
+		i.*,
 		s.s_stock,s.s_name from item i, stock s
 		 where i.i_no = s.s_no and i.i_no = #{s_no}
 	</select>
@@ -49,4 +48,8 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from item
 	</select>
+	
+	
+	
+	
 </mapper>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.bteam.mvc.vo.ItemVO;
+import kr.co.bteam.mvc.vo.MemberVO;
+import kr.co.bteam.mvc.vo.ReviewsVO;
 import kr.co.bteam.mvc.vo.SuperVO;
 
 @Repository("itemList")
@@ -52,6 +54,8 @@ public class ItemDao implements ItemDaoInter{
 		// TODO Auto-generated method stub
 		return ss.selectOne("jhy_item.detail", num);
 	}
+
+
 
 
 

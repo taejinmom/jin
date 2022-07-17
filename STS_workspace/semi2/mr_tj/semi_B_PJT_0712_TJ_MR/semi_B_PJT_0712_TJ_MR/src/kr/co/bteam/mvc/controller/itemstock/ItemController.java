@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.bteam.mvc.dao.ItemDaoInter;
+import kr.co.bteam.mvc.dao.ReviewDaoInter;
+import kr.co.bteam.mvc.service.ReviewsService;
 import kr.co.bteam.mvc.vo.ItemVO;
+import kr.co.bteam.mvc.vo.MemberVO;
+import kr.co.bteam.mvc.vo.ReviewsVO;
 
 @Controller
 @RequestMapping("/item")
@@ -22,7 +26,9 @@ public class ItemController {
 
 	@Autowired
 	private ItemDaoInter itemList;
-
+	@Autowired
+	private ReviewsService service;
+	
 	@GetMapping(value = "/itemList")
 	public String itemList(Model m,String gender) {
 		String i_gender = "";
@@ -79,15 +85,15 @@ public class ItemController {
 	@GetMapping(value = "/itemDetail")
 	public String itemDetail(Model m, int s_no) {
 		System.out.println("s_no : " +s_no);
-		
 		ItemVO vo = itemList.getDetail(s_no);
-		System.out.println("getI_price : " +vo.getI_price());
-		System.out.println("getI_comm : " +vo.getI_comm());
-		System.out.println("getI_gender : " +vo.getI_gender());
-		System.out.println("getI_img : " +vo.getI_img());
-		System.out.println("getI_no : " +vo.getI_no());
-		System.out.println("getI_name : " +vo.getI_name());
+		int i_no = vo.getI_no();
 		m.addAttribute("detail", vo);
+		
+		List<ReviewsVO> rvo = service.getReviews(i_no); 
+		//controller - service - dao 순
+		//상품번호에 해당하는 리뷰 리스트 
+		m.addAttribute("list", rvo);
+		
 		return "item/itemDetail";
 	}
 }

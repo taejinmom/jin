@@ -4,82 +4,97 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cmr_orders">
-<!-- 일반회원용 -->
-<select id="totalCount" parameterType="mvo" resultType="int">
-      select count(*) from orders 
-     <choose>
-         <when test="mem_no != null and 'mem_no == 3'">
-           where mem_no = #{mem_no} 
-         </when>
-         <when test="mem_no == 3">
-         	where mem_no = #{mem_no} 
-        </when>
-     </choose>
-</select>
-<resultMap type="ovo" id="ovomap">
-<id property="ord_no" column="ord_no" javaType="int"/>
-<result property="mem_no" column="mem_no" javaType="int"/>
-<result property="i_no" column="i_no" javaType="int"/>
-<result property="ord_count" column="" javaType="int"/>
-<result property="totalPrice" column="totalPrice" javaType="int"/>
-<result property="r_num" column="r_num" javaType="int"/>
-<result property="i_status" column="i_status" />
-<result property="ord_address" column="ord_address" />
-<result property="ord_name" column="ord_name" />
-<result property="ord_date" column="ord_date" />
-<result property="ord_edate" column="ord_edate" />
-
-<association property="ivo" column="ivo" javaType="ivo">
-		<id property="i_no" column="i_no" javaType="int"/>
-		<result property="i_price" column="i_price" javaType="int"/>
-		<result property="i_name" column="i_name" />
-	</association>
+	<!-- 일반회원용 -->
+	<select id="totalCount" parameterType="mvo" resultType="int">
+		select count(*) from orders
+		<choose>
+			<when test="mem_no != null and 'mem_no == 3'">
+				where mem_no = #{mem_no}
+			</when>
+			<when test="mem_no == 3">
+				where mem_no = #{mem_no}
+			</when>
+		</choose>
+	</select>
 	
-	<association property="mvo" column="mvo" javaType="mvo">
-		<id property="mem_no" column="mem_no" javaType="int"/>
-		<result property="mem_name" column="mem_name"/>
-	</association>
-</resultMap>
+	<resultMap type="ovo" id="ovomap">
+		<id property="ord_no" column="ord_no" javaType="int" />
+		<result property="mem_no" column="mem_no" javaType="int" />
+		<result property="i_no" column="i_no" javaType="int" />
+		<result property="ord_count" column="" javaType="int" />
+		<result property="totalPrice" column="totalPrice" javaType="int" />
+		<result property="r_num" column="r_num" javaType="int" />
+		<result property="i_status" column="i_status" />
+		<result property="ord_address" column="ord_address" />
+		<result property="ord_name" column="ord_name" />
+		<result property="ord_date" column="ord_date" />
+		<result property="ord_edate" column="ord_edate" />
 
-<select id="listpage" parameterType="searchvo" resultMap="ovomap" >
-    select * from (
-         select rownum r_num, a.* from (
-           select m.mem_name, i.i_name,  
-            i.i_price*o.ord_count as totalPrice, 
-          o.*
-           from orders o, item i, member m  where i.i_no = o.i_no and o.mem_no = m.mem_no 
-           <choose>
-           <when test="category = 'category.equals(배송중)'">
-           and o.i_status = '배송중'
-           </when>
-            <when test="category = 'category.equals(배송완료)'">
-           and o.i_status = '배송완료'
-           </when>
-           <when test="category = 'category.equals(상품준비중)'">
-           and o.i_status = '상품준비중'
-           </when>
-           <when test="category = 'category.equals(주문취소)'">
-           and o.i_status = '주문취소'
-           </when>           
-           <otherwise>
-           </otherwise>
-           </choose>
-           order by o.ord_no desc
-         ) a
-    ) where r_num between #{beginPerPage} and #{endPerPage}
-</select>
+		<association property="ivo" column="ivo" javaType="ivo">
+			<id property="i_no" column="i_no" javaType="int" />
+			<result property="i_price" column="i_price" javaType="int" />
+			<result property="i_name" column="i_name" />
+		</association>
+
+		<association property="mvo" column="mvo" javaType="mvo">
+			<id property="mem_no" column="mem_no" javaType="int" />
+			<result property="mem_name" column="mem_name" />
+		</association>
+	</resultMap>
+
+	<select id="listpage" parameterType="searchvo"
+		resultMap="ovomap">
+		select * from (
+		select rownum r_num, a.* from (
+		select m.mem_name, i.i_name,
+		i.i_price*o.ord_count as totalPrice,
+		o.*
+		from orders o, item i, member m where i.i_no = o.i_no and 
+		o.mem_no = m.mem_no
+		<choose>
+			<when test="category = 'category.equals(배송중)'">
+				and o.i_status = '배송중'
+			</when>
+			<when test="category = 'category.equals(배송완료)'">
+				and o.i_status = '배송완료'
+			</when>
+			<when test="category = 'category.equals(상품준비중)'">
+				and o.i_status = '상품준비중'
+			</when>
+			<when test="category = 'category.equals(주문취소)'">
+				and o.i_status = '주문취소'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+		order by o.ord_no desc
+		) a
+		) where r_num between #{beginPerPage} and #{endPerPage}
+	</select>
 
 
-<!-- Orders delete Query -->
-<delete id="del" parameterType="int">
-	delete from orders where ord_no=#{num}
-</delete>
+	<!-- Orders delete Query -->
+	<delete id="del" parameterType="int">
+		delete from orders where ord_no=#{num}
+	</delete>
 
-<!-- Orders update Query -->
-<update id="update" parameterType="ovo">
-	update orders set i_status=#{i_status} where ord_no = #{ord_no}
-</update>
+	<!-- Orders update Query -->
+	<update id="update" parameterType="ovo">
+		update orders set i_status=#{i_status} where ord_no = #{ord_no}
+	</update>
 
+	<!-- Orders insert Query -->
+	<insert id="add" parameterType="ovo">
+		insert into orders values(
+		orders_seq.nextVal,#{mem_no},#{i_no},#{ord_count},'상품준비중',
+		#{ord_address},#{ord_name},sysdate,null)
+	</insert>
+	<!-- Orders update Query -->
+	<!-- 구매 후 상품준비시간이 지나면 자동으로 업데이트 -->
+	<insert id="status" parameterType="map">
+		update orders set i_status =
+		'배송중',ord_edate = ord_date+3 where i_no = #{i_no}
+	</insert>
 
 </mapper>
 

@@ -1,11 +1,29 @@
 package kr.co.bteam.mvc.vo;
 
+import java.util.List;
+
 public class ReviewsVO {
-	private int r_no, ord_no, mem_no, i_no, r_score;
+	private int r_no, ord_no, mem_no, i_no, r_score,r_num;
 	private String r_name, r_comm, r_date;
 	private OrdersVO ordersvo;
 	private ItemVO itemvo;
+	private List<MemberVO> mvo;
 	
+	
+	
+	
+	public List<MemberVO> getMvo() {
+		return mvo;
+	}
+	public void setMvo(List<MemberVO> mvo) {
+		this.mvo = mvo;
+	}
+	public int getR_num() {
+		return r_num;
+	}
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
+	}
 	
 	public OrdersVO getOrdersvo() {
 		return ordersvo;

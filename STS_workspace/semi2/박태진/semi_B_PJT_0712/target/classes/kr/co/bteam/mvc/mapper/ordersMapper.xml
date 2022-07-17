@@ -3,13 +3,18 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="ptj_orders">
+ 
+ 	<!-- 아이템 리스트 - > 구매(orders 테이블에 insert) -->
 	<insert id="add" parameterType="ovo">
 		insert into orders values(
 		orders_seq.nextVal,#{mem_no},#{i_no},#{ord_count},'상품준비중',
 		#{ord_address},#{ord_name},sysdate,null)
 	</insert>
+	
+	<!-- 구매한 물품의 배송상태 update [상품준비중 -> 배송중 ]-->
 	<insert id="status" parameterType="map">
-		update orders set i_status = '배송중',ord_edate = ord_date+3 where i_no = #{i_no}
+		update orders set i_status = '배송중',
+		ord_edate = ord_date+3 where i_no = #{i_no}
 	</insert>
 	
  </mapper>

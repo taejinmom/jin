@@ -8,8 +8,30 @@
 	#{ord_no},#{mem_no},#{i_no},#{r_name},#{r_comm},#{r_score},sysdate)
 </insert>
 
+<resultMap type="rvo" id="review">
+		<id property="mem_no" column="mem_no" javaType="int"/>
+		<result property="r_num" column="r_num" javaType="int"/> 
+		<result property="i_no" column="i_no" javaType="int"/>
+		<result property="r_name" column="r_name"/>
+		<result property="r_comm" column="r_comm"/>
+		<result property="r_score" column="r_score" javaType="int"/>
+		<result property="r_date" column="r_date"/>
 
-
+		<collection property="mvo" javaType="java.util.List" 
+		ofType="mvo">
+		<id property="mem_no" column="mem_no" javaType="int"/>
+		<result property="mem_name" column="mem_name" /> 
+		
+		</collection>
+	
+	</resultMap>
+	
+	<select id="reviewlist" parameterType="int" resultMap="review">
+		     select rownum r_num ,a.* from( select r.i_no,
+		m.mem_name,r.r_name,r.r_comm ,r.r_score,r.r_date 
+		from reviews r ,member m 
+		 where r.mem_no = m.mem_no ) a where a.i_no =${i_no}
+		</select>
 
 
 

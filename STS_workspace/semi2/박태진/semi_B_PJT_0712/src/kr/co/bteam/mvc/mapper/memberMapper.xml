@@ -17,7 +17,8 @@
 	select * from member where mem_id=#{mem_id}
 </select>
 <update id="memberupdate" parameterType="mvo">
-	update member set mem_pw=#{mem_pw},mem_name=#{mem_name},mem_adr=#{mem_adr} where mem_no =#{mem_no}
+	update member set mem_pw=#{mem_pw}
+	,mem_name=#{mem_name},mem_adr=#{mem_adr} where mem_no =#{mem_no}
 </update>
 </mapper>
  

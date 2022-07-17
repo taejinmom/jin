@@ -21,49 +21,59 @@ public class MemberDao implements MemberDaoInter{
 
 	@Override
 	public void addMember(MemberVO vo) {
-		
-		ss.insert("ptj_member.add", vo);
-	}
-
+		ss.insert("ptj_member.add", vo);}
+	@Override
+	public List<? extends SuperVO> getList(Map<String, Integer> map) {
+		return null;}
 	@Override
 	public int idcheck(String id) {
-		
-		return ss.selectOne("ptj_member.idchk", id);
-	}
-
-
+		return ss.selectOne("ptj_member.idchk", id);}
 	
 	public int getCnt(){
-		int cnt = ss.selectOne("ptj_member.totalCount");
-		return cnt;
-	}
+		return ss.selectOne("ptj_member.totalCount");}
 
 	@Override
 	public MemberVO loginCheck(MemberVO vo) {
-		return ss.selectOne("ptj_member.login", vo);
-	}
+		return ss.selectOne("ptj_member.login", vo);}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//1-1 회원의 정보보기 (info) 
 	@Override
 	public MemberVO memberInfo(String id) {
-		 
-		return ss.selectOne("ptj_member.info",id);
-	}
-
-	
+		return ss.selectOne("ptj_member.info",id);}
+	//1-2 회원의 정보수정 (memberupdate)
 	@Override
 	public void memberUpdate(MemberVO vo) {
-		ss.update("ptj_member.memberupdate",vo);
-	}
-	
-
-	@Override
-	public List<? extends SuperVO> getList(Map<String, Integer> map) {
-		
-		return null;
-	}
-	
+		ss.update("ptj_member.memberupdate",vo);}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

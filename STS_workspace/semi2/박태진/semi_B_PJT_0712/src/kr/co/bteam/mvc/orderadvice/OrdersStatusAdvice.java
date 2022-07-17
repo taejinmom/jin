@@ -34,17 +34,14 @@ public class OrdersStatusAdvice {
 		String methodName = jp.getSignature().getName();
 		System.out.println("methodName : "+methodName);
 		
-		
 		OrdersStatusInter ordersStatusInter = applicationContext.getBean(methodName, OrdersStatusInter.class);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("i_no", i_no);
 		new Thread(new Runnable() {
-			
 			@Override
 			public void run() {
 				try {
 					Thread.sleep(5000);
-					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

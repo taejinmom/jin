@@ -57,8 +57,7 @@ public class MemberDao implements MemberDaoInter{
 	public List<? extends SuperVO> getList(Map<String, Integer> map) {
 		return null;
 	}
-	
-	// 
+
 	
 
 }

@@ -22,7 +22,7 @@
 						<td><a href="itemDetail?s_no=${e.i_no}">${e.i_name}</a></td>
 						<td>${e.i_price}</td>
 						<td>${e.i_category}</td>
-						<td><img src="${mycontext}/resources/item/${e.i_img}"
+						<td><img src="${mycontext}/resources/item/${e.i_img}" alt="이미지 준비중"
 							style="width: 200px"></td>
 					</tr>
 				</c:forEach>
@@ -102,7 +102,6 @@
 				</tr>
 			</tfoot>
 		</table>
-	</div>
 
 </article>
 

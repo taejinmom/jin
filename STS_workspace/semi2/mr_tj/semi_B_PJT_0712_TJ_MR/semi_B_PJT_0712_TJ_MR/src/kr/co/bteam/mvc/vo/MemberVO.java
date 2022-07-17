@@ -1,5 +1,8 @@
 package kr.co.bteam.mvc.vo;
 
+import java.util.List;
+
+
 public class MemberVO extends SuperVO{
 	private int mem_no;
     private String mem_id;
@@ -9,7 +12,16 @@ public class MemberVO extends SuperVO{
     private String mem_phone;
     private String mem_adr;
     private String mem_date;
+    private List<ReviewsVO> reviewvo;
     
+    
+    
+	public List<ReviewsVO> getReviewvo() {
+		return reviewvo;
+	}
+	public void setReviewvo(List<ReviewsVO> reviewvo) {
+		this.reviewvo = reviewvo;
+	}
 	public int getMem_no() {
 		return mem_no;
 	}

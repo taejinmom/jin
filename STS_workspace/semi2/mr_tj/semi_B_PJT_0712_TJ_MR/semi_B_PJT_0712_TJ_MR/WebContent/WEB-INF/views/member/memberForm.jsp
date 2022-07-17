@@ -21,12 +21,11 @@
 				<input type="text" class="form-control" id="mem_id"
 					placeholder="아이디 입력(5-10)" name="mem_id" maxlength="10"
 					required="required" pattern=".{1,10}">
-				<button type="button" class="btn btn-primary" id="btn1">중복확인</button>
 				<div id="target"></div>
 			</div>
 			<div class="form-group">
 				<label for="mem_pw">비밀번호</label> <input type="password"
-					class="form-control" placeholder="********" id="mem_pw" name="mem_pw" required="required">
+					class="form-control" placeholder="********" id="mem_pw" name="mem_pw" required>
 			</div>
 			<div class="form-group">
 				<label for="mem_name">이름</label> <input type="text" class="form-control"
@@ -58,20 +57,20 @@
 	<script>
 $(function() {
 
-	
-	$('#btn1').click(function() {
+	//아이디를 사용자가 입력할때
+	$('#mem_id').bind('input',function() {
+		//mem_id - > 값을 param에 저장하고
 		let param = $('#mem_id').val();
-		//alert("param"+param);
 		$.ajax({
+			//idchk
 			url:"idchk?mem_id="+param,
 			success:function(data){
-				console.log(data);
 				if(data == 1){
-					$('#target').css('background-color','red')
-					.css('color','white').html('사용중인 아이디 입니다.');
+					$('#target').css('display','inline-block').
+					css('color','red').html("사용중입니다");
 				}else{
-					$('#target').css('background-color','blue')
-					.css('color','white').html('사용 가능한 아이디 입니다.');
+					$('#target').css('display','inline-block').
+					css('color','blue').html("사용가능합니다");
 				}
 				
 			}

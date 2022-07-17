@@ -84,9 +84,11 @@ public class ItemController {
 		System.out.println("s_no : " +s_no);
 		//s_no(stock테이블의 pk) = i_no(item테이블의 pk)
 		ItemVO vo = itemList.getDetail(s_no);
-		m.addAttribute("detail", vo);//detail.jsp로 상세정보를 보내주기
+		m.addAttribute("detail", vo);//itemDetail.jsp로 상세정보를 보내주기
 		return "item/itemDetail";
 	}
+	
+	
 	//상세보기 페이지에서 구매 버튼 클릭 시 구매 정보를 입력하는 폼으로 이동
 	@PostMapping(value = "/order")
 	public ModelAndView ordersForm(HttpServletRequest request) {

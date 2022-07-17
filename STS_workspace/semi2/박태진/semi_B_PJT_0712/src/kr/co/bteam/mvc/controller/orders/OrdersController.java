@@ -18,23 +18,17 @@ public class OrdersController {
 	@Autowired
 	private OrdersDaoInter ordersDaoInter;
 	
+	//구매하기 버튼을 눌러 최종적으로 구입
 	@PostMapping(value = "/orderIn")
-	public ModelAndView addOrders(OrdersVO vo,HttpServletRequest request,HttpSession session) {
-		ModelAndView mav = new ModelAndView("redirect:/main");
-		int mem_no = (int) session.getAttribute("sessionNo");
-		int ord_count = Integer.parseInt(request.getParameter("number"));
+	public ModelAndView addOrders(OrdersVO vo,
+			HttpServletRequest request,HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView("redirect:/main");//메인 페이지로 setViewName
+		int mem_no = (int) session.getAttribute("sessionNo");//로그인 되어있는 사용자의 회원 번호
+		int ord_count = Integer.parseInt(request.getParameter("number"));//구매할 상품의 상품번호
 		vo.setMem_no(mem_no);
 		vo.setOrd_count(ord_count);
-		System.out.println(vo.getOrd_address());
-		System.out.println(vo.getOrd_name());
-		System.out.println(vo.getOrd_count());
-		System.out.println(vo.getMem_no());
-		System.out.println("orderIn 작동1");
 		ordersDaoInter.addOrders(vo);
-		System.out.println("orderIn 작동2");
 		return mav;
 	}
-	
-
-	
 }

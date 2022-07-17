@@ -41,7 +41,8 @@
 	<select id="detail" parameterType="int"  resultMap="itemResult">
 		select
 		i.i_no,
-		i.i_name, i.i_price, i.i_category, i.i_comm, i.i_img, i.i_gender,
+		i.i_name, i.i_price, i.i_category,
+		i.i_comm, i.i_img, i.i_gender,
 		s.s_stock,s.s_name from item i, stock s
 		 where i.i_no = s.s_no and i.i_no = #{s_no}
 	</select>

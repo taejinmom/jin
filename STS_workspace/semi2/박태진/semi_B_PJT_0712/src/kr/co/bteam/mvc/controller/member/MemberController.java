@@ -36,14 +36,7 @@ public class MemberController {
 		memberdaointer.addMember(vo);
 		return mav;
 	}
-	@GetMapping("/myPage")
-	public ModelAndView myPageList(Model m, MemberVO vo, HttpSession session) {
-		ModelAndView mav = new ModelAndView("member/mypage");
-		String id = (String) session.getAttribute("sessionId");
-		vo = memberdaointer.memberInfo(id);
-		m.addAttribute("vo", vo);
-		return mav;
-	}
+	
 	@GetMapping("/idchk")
 	public ModelAndView idchk(Model m, String mem_id) {
 		ModelAndView mav = new ModelAndView("member/idchk");
@@ -53,6 +46,7 @@ public class MemberController {
 		
 		return mav;
 	}
+	
 	@PostMapping("/updateIn")
 	public String update(MemberVO vo,HttpSession session,HttpServletRequest request) {
 		int mem_no = (int) session.getAttribute("sessionNo");
@@ -60,6 +54,14 @@ public class MemberController {
 		memberdaointer.memberUpdate(vo);
 		return "redirect:/main";
 		
+	}
+	@GetMapping("/myPage")
+	public ModelAndView myPageList(Model m, MemberVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView("member/mypage");
+		String id = (String) session.getAttribute("sessionId");
+		vo = memberdaointer.memberInfo(id);
+		m.addAttribute("vo", vo);
+		return mav;
 	}
 	
 }

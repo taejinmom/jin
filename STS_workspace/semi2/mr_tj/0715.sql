@@ -24,14 +24,18 @@ select
 		s.s_stock,s.s_name from item i, stock s
 		 where i.i_no = s.s_no and i.i_no = 3;
 update member set mem_pw=2555,mem_adr='중구',mem_name='박실수3' where mem_no =21;
-insert into orders values(orders_seq.nextVal, 7, 1, 2, '상태', '목동','최오빠', sysdate, sysdate+1);
+insert into orders values(orders_seq.nextVal, 7, 1, 2, '배송완료', '어벤져스 동','앤트맨', sysdate, sysdate+1);
+insert into orders values(orders_seq.nextVal, 5, 1, 2, '배송완료', '오오오','테스트', sysdate, sysdate+1);
+
 insert into orders values(orders_seq.nextVal, 8, 2, 2, '상태', '신도림','최언니', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 10, 50, 2, '상태', '홍대','장장발', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 11, 51, 2, '상태', '신촌','김단발', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 12, 5, 10, '상태', '용인','박안녕', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 17, 6, 5, '상태', '송도','박박이', sysdate, sysdate+1);
-
+commit;
 insert into reviews values(reviews_seq.nextVal, 1, 7, 1, '멋진 옷','추천합니다!', 5,sysdate); 
+insert into reviews values(reviews_seq.nextVal, 3, 5, 1, '멋진 옷','추천합니다!', 5,sysdate); 
+
 insert into reviews values(reviews_seq.nextVal, 2, 8, 2, '예쁜 옷','잘 입을게요!', 5,sysdate); 
 insert into reviews values(reviews_seq.nextVal, 3, 7, 1, '간지나는 옷','강추강추!', 5,sysdate); 
 insert into reviews values(reviews_seq.nextVal, 4, 8, 2, '멋진 옷','추천합니다!', 5,sysdate); 
@@ -63,8 +67,51 @@ Insert into MEMBER values(8,'id8','pw8','정테스','900901-2122888','010-2779-7754
 Insert into MEMBER values(1,'id1','pw1','최테스','980917-2255888','010-7729-5477','목동',to_date('22/07/12','RR/MM/DD'));
 Insert into MEMBER values(15,'id15','pw15','이테스','901111-2233117','010-7529-7117','구로',to_date('22/07/13','RR/MM/DD'));
 
-update orders set i_status = '배송 완료' where ord_no = 1;
+update orders set i_status = '배송중' where mem_no = 7;
 
+select * from orders;
+select * from orders where mem_no =7;
+select * from member;
+commit;
 
+select * from (
+		select rownum r_num, a.* from (
+		select m.mem_name, i.i_name,
+		i.i_price*o.ord_count as totalPrice,
+		o.*
+		from orders o, item i, member m where i.i_no = o.i_no and 
+		o.mem_no = m.mem_no 
+          and o.i_status = '상품준비중'  and m.mem_no = o.mem_no order by o.ord_no desc
+         ) a
+    ) where r_num between 1 and 10;
+    select * from orders where mem_no = 7;
+    select count(*) from orders where mem_no = 7;
+    
+    select * from stock;
+    select
+		i.*,
+		s.s_stock,s.s_name from item i, stock s
+		 where i.i_no = s.s_no;
+         select * from item;
+         select * from reviews;
+         select rownum r_num,m.mem_name,r.r_name,r.r_comm ,r.r_score,r.r_date from reviews r ,member m where  r.mem_no = m.mem_no and r.i_no = 1;
+select rownum r_num,
+		m.mem_name,r.r_name,r.r_comm ,r.r_score,r.r_date 
+		from reviews r ,member m 
+		where r.mem_no = m.mem_no and r.i_no = 1;
+        
+        select rownum r_num ,a.* from( select r.i_no,
+		m.mem_name,r.r_name,r.r_comm ,r.r_score,r.r_date 
+		from reviews r ,member m 
+		 where r.mem_no = m.mem_no ) a;
+         
+        select rownum r_num ,a.* from( select r.i_no,
+		m.mem_no,m.mem_name,r.r_name,r.r_comm ,r.r_score,r.r_date 
+		from reviews r ,member m 
+		 where r.mem_no = m.mem_no ) a where a.i_no = 1;
+         delete from reviews where ord_no=3;
+delete from reviews;
+commit;
+ select * from reviews;
 select * from orders;
 select * from member;
