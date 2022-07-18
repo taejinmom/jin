@@ -2,6 +2,9 @@ alter sequence orders_seq increment by 1;
 select * from member;
 select * from reviews;
 select * from item;
+select * from orders where i_no = 10;
+update orders set i_status = '배송 완료' where i_no = 10;
+commit;
 select * from stock;
 select * from orders;
 commit;
@@ -24,9 +27,10 @@ select
 		s.s_stock,s.s_name from item i, stock s
 		 where i.i_no = s.s_no and i.i_no = 3;
 update member set mem_pw=2555,mem_adr='중구',mem_name='박실수3' where mem_no =21;
-insert into orders values(orders_seq.nextVal, 7, 1, 2, '배송완료', '어벤져스 동','앤트맨', sysdate, sysdate+1);
+select * from orders where mem_no = 7;
+insert into orders values(orders_seq.nextVal, 7, 3, 3, '배송완료', '어벤져스 동','앤트맨', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 5, 1, 2, '배송완료', '오오오','테스트', sysdate, sysdate+1);
-
+commit;
 insert into orders values(orders_seq.nextVal, 8, 2, 2, '상태', '신도림','최언니', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 10, 50, 2, '상태', '홍대','장장발', sysdate, sysdate+1);
 insert into orders values(orders_seq.nextVal, 11, 51, 2, '상태', '신촌','김단발', sysdate, sysdate+1);
@@ -115,3 +119,18 @@ commit;
  select * from reviews;
 select * from orders;
 select * from member;
+
+create table memberlog(
+num number,
+idn varchar2(30),
+reip varchar2(30),
+uagent varchar2(255),
+status varchar2(25),
+sstime date,
+
+CONSTRAINT MYLOGINLOGS_num_pk PRIMARY KEY(num),
+constraint myloginlogs_idn_fk FOREIGN KEY(idn) REFERENCES member(mem_id)
+);
+ALTER TABLE member ADD mem_email VARCHAR2(50) DEFAULT 'test@naver.com' not null;
+ALTER TABLE member ADD mem_q VARCHAR2(50) DEFAULT '추억' NOT NULL;
+ALTER TABLE member ADD mem_a VARCHAR2(50) DEFAULT '놀이공원' NOT NULL;

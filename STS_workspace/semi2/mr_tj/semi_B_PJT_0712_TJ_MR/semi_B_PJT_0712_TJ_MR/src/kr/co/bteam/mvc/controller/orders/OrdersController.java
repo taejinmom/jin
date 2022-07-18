@@ -33,7 +33,10 @@ public class OrdersController {
 	private int totalBlock = 0;// 전체 블럭 수
 	private int beginPerPage = 0;// 각 페이지별 시작 게시물의 index값
 	private int endPerPage = 0;// 각 페이지별 마지막 게시물의 index값
-
+	
+	public ModelAndView orderForm() {
+		
+	}
 	// 구매하기 버튼을 눌러 최종적으로 구입
 	@PostMapping(value = "/orderIn")
 	public ModelAndView addOrders(OrdersVO vo, HttpServletRequest request, HttpSession session) {

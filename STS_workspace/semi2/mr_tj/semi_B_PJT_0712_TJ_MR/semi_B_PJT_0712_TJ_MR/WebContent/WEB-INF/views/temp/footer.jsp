@@ -48,7 +48,7 @@
 		<%--리뷰페이지로 이동  --%>
 		$('#reviewbtn').click(function() {
 			$('#purchase').submit(function() {
-			$('#purchase').attr("action", "${mycontext}/review/reviewForm");
+			$('#purchase').attr("action", "");
 				alert('리뷰 페이지로 이동합니다!');
 			});
 		});
